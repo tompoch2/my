@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+	<script src="/js/cam.js"></script>
+	<link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<section name="camera_view">
+
+
+	</section>
+
+	<script>
+		$(function(){
+
+			new $.camJS($('section[name="camera_view"]'),{
+				cameras: [{
+		                'url': "http://cd3307.myfoscam.org:200/",
+		                'stream_route': "/videostream.cgi",
+		                'control_route': "/decoder_control.cgi",
+		                'name': 'Interna'
+		            },{
+		                'url': "http://cd3307.myfoscam.org:300/",
+		                'stream_route': "/videostream.cgi",
+		                'control_route': "/decoder_control.cgi",
+		                'name': 'Externa'
+		        }]
+			});
+
+		});
+	</script>
+
+</body>
+
+</html>
