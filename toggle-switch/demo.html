@@ -1,0 +1,66 @@
+<html>
+<html>
+	<head>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+		<script src="ToggleSwitch.js"></script>
+		<link rel="stylesheet" href="css/toggleswitch.css" />
+		<style>
+			html, body {
+			   -moz-user-select: -moz-none;
+			   -khtml-user-select: none;
+			   -webkit-user-select: none;
+			}
+
+			.ts-track {
+				margin-left: 30px;
+			}
+		</style>
+		<script>
+			var readyStateCheckInterval = setInterval(function() {
+			    if (document.readyState === "complete") {
+			    	clearInterval(readyStateCheckInterval);
+			        init();
+			    }
+			}, 10);
+
+			function init() {
+				var oSmallToggle = new ToggleSwitch(document.getElementById('toggle'), "ON", "OFF");
+				var oSmallOrangeToggle = new ToggleSwitch(document.getElementById('toggle2'), "YES", "NO");
+				var oBlueToggle = new ToggleSwitch(document.getElementById('toggle3'), "YES", "NO");
+				var oOrangeToggle = new ToggleSwitch(document.getElementById('toggle4'), "ON", "OFF");	
+				var oSmallToggleDisable = new ToggleSwitch(document.getElementById('toggleDisable'), "ON", "OFF");
+				var oBlueToggleDisable = new ToggleSwitch(document.getElementById('toggleDisable2'), "ON", "OFF");
+
+				oSmallToggle.addListener(function(bEnabled) {
+					oBlueToggle.toggle();
+				});
+
+				oSmallOrangeToggle.addListener(function(bEnabled) {
+					(bEnabled) ? oOrangeToggle.on() : oOrangeToggle.off();
+				});
+				
+				oSmallToggleDisable.addListener(function(bEnabled) {
+				
+					if(oBlueToggleDisable.isDisabled())
+						oBlueToggleDisable.enable();
+					else
+						oBlueToggleDisable.disable();
+				});
+			    oBlueToggleDisable.addListenerTryChangeDisable(function() {
+			        alert("Try change disabled");
+			    });
+
+			}
+
+		</script>
+	</head>
+	<body>
+		<input class="blue small" checked="checked" id="toggle" type="checkbox" />
+		<input class="orange small" id="toggle2" type="checkbox" />
+		<input class="blue" id="toggle3" type="checkbox" />
+		<input class="orange" id="toggle4" type="checkbox" />
+		<input class="blue small" checked="checked" id="toggleDisable" type="checkbox" />
+		<input class="blue" id="toggleDisable2" type="checkbox" />	
+	</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "mqtt_socket_io",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.1",
+    "ejs": "~0.7.1",
+    "express": "~2.5.8",
+    "mqtt": "^2.1.3",
+    "socket.io": "^0.9.17"
+  },
+  "engines": {
+    "node": "0.6.x"
+  }
+}
