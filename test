@@ -1,0 +1,41 @@
+<html>
+ <head>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/humanity/jquery-ui.css" type="text/css" />
+ </head>
+ <body>
+  <div id="dialog" title="Title Box">
+   <p>Stuff here</p>
+  </div>
+  <script type="text/javascript">
+   jQuery(
+    function() {
+     jQuery("#dialog")
+      .dialog(
+       {
+        bgiframe: true,
+        autoOpen: false,
+        height: 100,
+        modal: true
+       }
+      );
+     jQuery('body')
+      .bind(
+       'click',
+       function(e){
+        if(
+         jQuery('#dialog').dialog('isOpen')
+         && !jQuery(e.target).is('.ui-dialog, a')
+         && !jQuery(e.target).closest('.ui-dialog').length
+        ){
+         jQuery('#dialog').dialog('close');
+        }
+       }
+      );
+    }
+   );
+  </script>
+  <a href="#" onclick="jQuery('#dialog').dialog('open'); return false">Click to view</a>
+ </body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">        
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="js/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="js/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="js/dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="js/style.css">
+<title>Documento sin título</title>
+
+</head>
+
+<body>
+	<table>
+  		<tr>
+        	<td></td>  			
+  			<td><strong>Filtro:</strong></td>
+  			<td>
+  				<input type='text' id='codigos' class="form-control input-sm" name='codigos' size=25 onChange='buscar_arts_prod();' onKeyUp='if(event.which==13) buscar_arts_prod();'>
+  				<img id='cargandoimg' src='imagenes/ajax-loader1.gif' style='display: none;'>  
+  				<input type='hidden' id='prod_id' name='prod_id' value=''>
+	  		</td>
+  		</tr>
+	</table>
+</body>
+</html>
