@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Datatables - Server-Side processing using PHP&MySQL and Ajax|RefreshMyMind.Com</title>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css"/>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+<h1>Data Source : Server-Side processing using PHP&MySQL and Ajax</h1>
+<table cellpadding="1" cellspacing="1" id="users" class="display" width="100%">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Lugar</th>
+        <th>Ubicacion</th>
+        <th>Tipo</th>
+        <th>Sub Tipo</th>
+        <th>Visible</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Lugar</th>
+        <th>Ubicacion</th>
+        <th>Tipo</th>
+        <th>Sub Tipo</th>
+        <th>Visible</th>
+    </tr>
+    </tfoot>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#users').DataTable({
+            "columns": [
+                {"data": "id_controlador"},
+                {"data": "nombre"},
+                {"data": "lugar"},
+                {"data": "ubicacion"},
+                {"data": "tipo"},
+                {"data": "tipo_sub"},
+                {"data": "visible"}
+            ],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: '../data_vista_controladores.php',
+                type: 'POST'
+            }
+        });
+    });
+</script>
+</body>
+</html>
