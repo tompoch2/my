@@ -16,11 +16,16 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mosquitto test client</title>
+        <title></title>
         <script type="text/javascript" src="../paho/js/mqttws31.js"></script>
-        <script src="../paho/js/jquery-1.11.2.min.js"></script>
-        <script src="../paho/js/iphone-style-checkboxes.js"></script>
-        <link rel="stylesheet" href="../paho/css/style.css">
+        <script src="../paho/js/jquery-1.11.2.min.js"></script>        
+
+        <script type="text/javascript" src="../js/on-off-switch.js"></script>
+        <script type="text/javascript" src="../js/on-off-switch-onload.js"></script>
+
+<!--        <script src="../paho/js/iphone-style-checkboxes.js"></script>-->
+<!--        <link rel="stylesheet" href="../paho/css/style.css">-->
+
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -29,6 +34,9 @@
         <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
         <link rel="stylesheet" href="../css/index.css">
         <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
+
+        
+        <link rel="stylesheet" type="text/css" href="../css/on-off-switch.css">
 
 <script type="text/javascript">
 var hostname = "cd3307.myfoscam.org";
@@ -130,6 +138,39 @@ var client = new Paho.MQTT.Client(hostname, Number(port), cliente);
 <script>
 $(document).ready(function()
 {
+    new DG.OnOffSwitchAuto({
+        cls:'.custom-switch',
+        textOn:"YES",
+        height:35,
+        textOff:"NO",
+        textSizeRatio:0.35,
+        listener:function(name, checked)
+        {
+//            $("#listener-text").html("Listener escuchando para " + name + ", checkeado: " + checked);
+
+            var el_nombre = name;
+
+            console.log(el_nombre);
+
+            var topico2 = el_nombre;
+            var el_topico2  = topico2.replace(/-/g, "/");
+
+            console.log(checked);
+
+            if (checked == true)
+            {
+                var message = new Paho.MQTT.Message("On");
+                message.destinationName = el_topico2;
+                client.send(message);
+            }
+            else if (checked == false)
+            {
+                var message = new Paho.MQTT.Message("Off");
+                message.destinationName = el_topico2;
+                client.send(message);
+            }
+        }
+    });
 //                var los_elementos = document.getElementsByTagName('input');
 
 //                for (var i=0; i<los_elementos.length; i++)
@@ -143,14 +184,41 @@ $(document).ready(function()
 //                    var el_status_del_elemento  = status_del_elemento.replace(/-/g, "/");
 //                }
 
-    $(':checkbox').iphoneStyle(
+//    $(':checkbox')
+//    {
+//        listener:function(name, checked)
+//        {
+//            console.log(name);
+//           console.log(checked); 
+////            document.getElementById("listener-text-table").innerHTML = "Switch " + name + " changed value to " + checked;
+ //       }
+ //   }
+/*    
+    new DG.OnOffSwitchAuto({
+        cls:'.custom-switch',
+        textOn:"YES",
+        height:35,
+        textOff:"NO",
+        textSizeRatio:0.35,
+        listener:function(name, checked){
+            document.getElementById("listener-text-table").innerHTML = "Switch " + name + " changed value to " + checked;
+        }
+    });
+*/
+
+/*
+    $(':checkbox').listener(
     {
         onChange: function(elem,val)
         {
             var el_nombre = $(elem).attr('name');
 
+            console.log(el_nombre);
+
             var topico2 = el_nombre;
             var el_topico2  = topico2.replace(/-/g, "/");
+
+            console.log(val);
 
             if (val)
             {
@@ -166,6 +234,7 @@ $(document).ready(function()
             }
         }
     });
+*/
 });
         </script>
     </head>
@@ -191,23 +260,20 @@ $(document).ready(function()
 
             $mqtt_full_objeto2 = str_replace("/","-",$mqtt_full_objeto);
 
-            $objj .= "
+            $objj .= "  
             <div class='box-body'>
-                <table style='width:100%'>
-                    <tr>
-                        <td>
-                            <span>" . $nombre_corto_objeto . "</span>
-                        </td>
-                        <td style='width=60' align='center'>
-                            <input name='" . $mqtt_full_objeto2 . "' checked='checked' class='yesno' type='checkbox'/>
-                        </td>
-                    </tr>
+                <table style='width:100%'>                   
+                    <td>
+                        <input type='checkbox' class='custom-switch' checked name='" . $mqtt_full_objeto2 . "' data-textOn='ON' data-textOff='OFF' data-trackColorOn='#00A65A' data-trackColorOff='#DF1A1A' data-textColorOff='#fff' data-trackBorderColor='#555'>
+                    </td>
+                    <td>" . $nombre_corto_objeto . "</td>
                 </table>
-            </div>";
+            </div>";           
         }
         while ($row_el_contro = mysql_fetch_assoc($el_contro));
     }
     print($objj);
 ?>
+    <div id="listener-text">
     </body>
 </html>
