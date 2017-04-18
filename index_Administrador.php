@@ -42,19 +42,24 @@
     <link rel="stylesheet" href="css/ionicons.min.css">
     <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="dist/css/demo.min.css">
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <link rel="stylesheet" href="css/sweetalert.css">
+    <link rel="stylesheet" href="css/on-off-switch.css"/>
 
     <script type="text/javascript" src="paho/js/mqttws31.js"></script>
     <script src="paho/js/jquery-1.11.2.min.js"></script>
+<!--    
     <script src="paho/js/iphone-style-checkboxes.js"></script>
     <link rel="stylesheet" href="paho/css/style.css">
+-->
+    <script type="text/javascript" src="js/on-off-switch.js"></script>
+    <script type="text/javascript" src="js/on-off-switch-onload.js"></script>
+    
 
     <link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
-
-    <link rel="stylesheet" type="text/css" href="css/jquery.jdigiclock.css" />
-    
+    <link rel="stylesheet" type="text/css" href="css/jquery.jdigiclock.css" /> 
     <link href="css/bootstrap-wizard.css" rel="stylesheet" />
     <link href="chosen/chosen.css" rel="stylesheet" />
 
